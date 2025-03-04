@@ -1,8 +1,9 @@
+// Header.tsx
 import React from 'react';
 import './Header.css'; // Optional: For styling
 
-interface HeaderProps { //Optional props
-  title?: string;   // Example: A title for the header
+interface HeaderProps {
+  title?: string; // Example: A title for the header
   // Add more props as needed
 }
 

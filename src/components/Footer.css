@@ -1,12 +1,16 @@
+/* Footer.css */
 .footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
   background-color: #f0f0f0;
-  padding: 1rem 0;
+  padding: 20px;
   text-align: center;
-  border-top: 1px solid #ccc;
+  color: #333;
 }
 
 .footer-content {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
+max-width: 1200px;
+margin: 0 auto;
 }
