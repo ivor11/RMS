@@ -7,11 +7,13 @@ import Footer from './components/Footer';
 function App() {
   const [activeComponent, setActiveComponent] = useState<string | null>(null);
 
-  const handleHeaderLinkClick = (componentId: string) => {
+  const handleHeaderLinkClick = (componentId: string | null) => {
     setActiveComponent(componentId);
-      const element = document.getElementById(componentId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (componentId) { // Ensure componentId is not null before accessing the DOM.
+        const element = document.getElementById(componentId);
+        if (element) {
+            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
     }
   };
 

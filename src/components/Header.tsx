@@ -9,12 +9,12 @@ interface HeaderProps {
 const Header: React.FC<HeaderProps> = ({ title = "My Awesome Site", onLinkClick }) => {
     const handleLinkClick = (componentId: string) => {
         onLinkClick(componentId);
-        window.location.hash = componentId;
+        window.location.hash = componentId; //Set the hash to the component id
     };
 
     const handleTitleClick = () => {
       onLinkClick(null); // Set active component to null to show the home page
-      window.location.hash = ''; // Clear the URL hash
+      window.location.hash = '#'; // Clear the URL hash explicitly using '#'
     };
 
   return (
