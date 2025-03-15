@@ -3,7 +3,7 @@ import NotificationIcon from './NotificationIcon';
 
 interface HeaderProps {
   title?: string;
-  onLinkClick: (componentId: string) => void;
+  onLinkClick: (componentId: string | null) => void; // Allow null as a valid argument
 }
 
 const Header: React.FC<HeaderProps> = ({ title = "My Awesome Site", onLinkClick }) => {
