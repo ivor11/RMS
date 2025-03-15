@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 
 interface Paper {
   title: string;
@@ -25,25 +26,19 @@ const ResearchPaperSearch: React.FC = () => {
 
         try {
           const apiUrl = `https://api.crossref.org/works?query=${encodeURIComponent(query)}&rows=5`;
-          const response = await fetch(apiUrl);
-
-          if (!response.ok) {
-             throw new Error(`API request failed with status ${response.status}`);
-          }
-
-           const data = await response.json();
-          if(data.message && data.message.items){
-            const papers = data.message.items.map((item: any) => ({
-                title: item.title ? item.title[0] : 'No Title',
-                abstract: item.abstract || 'No Abstract', //some dont have abstract
-                authors: item.author ? item.author.map((author: any) => `${author.given} ${author.family}`) : [],
-                 url: item.URL,
-                journal: item['container-title'] ? item['container-title'][0] : 'No Journal'
-            }))
-              setResults(papers)
-            }else{
-               setError('No results found. Please try a different query');
-             }
+            const response = await axios.get(apiUrl);
+            if (response.data.message && response.data.message.items) {
+                const papers = response.data.message.items.map((item: any) => ({
+                    title: item.title ? item.title[0] : 'No Title',
+                    abstract: item.abstract || 'No Abstract',
+                    authors: item.author ? item.author.map((author: any) => `${author.given} ${author.family}`) : [],
+                     url: item.URL,
+                    journal: item['container-title'] ? item['container-title'][0] : 'No Journal'
+                }))
+                setResults(papers)
+            } else {
+                setError('No results found. Please try a different query');
+            }
 
         } catch (err: any) {
           setError(err.message || 'An unexpected error occurred.');
